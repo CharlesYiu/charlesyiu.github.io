@@ -9,7 +9,11 @@
 <body>
   <h1 styles="font-family: Arial, Helvetica, sans-serif; font-size: 48px;">Redirecting from '/' to '/home/'</h1>
   <script>
-    window.location = "https://charlesyiu.github.io/home/"
+    if (window.location.toString().endsWith("#")) {
+      window.location = "https://charlesyiu.github.io/home/#"
+    } else {
+      window.location = "https://charlesyiu.github.io/home/"
+    }
   </script>
 </body>
 </html>
