@@ -69,6 +69,7 @@
 					if (selectionIndex == currentSelectionIndex) selections[currentSelectionIndex].style.color = "gray";
 					else selections[selectionIndex].style.color = "black";
 				}
+				document.body.style.cursor = "none";
 			} else if (event.code == "Enter") {
 				event.preventDefault();
 				if (isNaN(currentSelectionIndex)) {
@@ -76,9 +77,11 @@
 					return selections[0].style.color = "gray";
 				}
 				selections[currentSelectionIndex].click();
+				document.body.style.cursor = "none";
 			}
 		};
 		window.onmousemove = event => {
+			document.body.style.cursor = "auto";
 			currentSelectionIndex = NaN;
 			for (var selectionIndex = 0; selectionIndex < selections.length; selectionIndex++) {
 				selections[selectionIndex].style.color = "black";
