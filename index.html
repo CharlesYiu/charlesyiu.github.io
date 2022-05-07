@@ -5,28 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charles Yiu</title>
-	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="shortcut icon" href="https://s.charr.cc/favicon.ico">
 	<style>
 		* {
-			font-family: Arial, Helvetica, sans-serif;
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
 			text-align: center;
 		}
-		body { margin: 10%; }
+		body { margin-top: 100px; }
 		h1 { font-size: 48px; }
-		h2 {
-			font-size: 34px;
-			color:rgb(63, 63, 63);
-		}
 		a, button { font-size: 16px; }
 		a {
 			color: black;
-			transition-duration: 0.2s;
+			transition-duration: 0.1s;
 			text-decoration: none;
 		}
 		a:hover, button:hover { cursor: pointer; }
-		a:active, button:active { color: dodgerblue; }
+		a:active, button:active { color: gray; }
 		button {
-			transition-duration: 0.2s;
+			transition-duration: 0.1s;
 			border: none;
 			background: none;
 		}
@@ -39,43 +35,54 @@
 			-ms-user-select: none; /* Internet Explorer/Edge */
 			user-select: none;
 		}
-		#footer {
-			border-top: 5px solid rgb(63, 63, 63);
-			margin-top: 34px;
-		}
 	</style>
 </head>
 <body>
 	<h1>Charles Yiu</h1>
 	<div>
-		<a href="https://github.com/charlesyiu" target="_blank" rel="noopener noreferrer">github.com/charlesyiu</a><br>
+		<a href="https://github.com/charlesyiu" target="_blank" rel="noopener noreferrer" id="github">github.com/charlesyiu</a><br>
+		<a href="https://twitter.com/thecharlesyiu" target="_blank" rel="noopener noreferrer" id="twitter">twitter.com/thecharlesyiu</a><br>
 		<button id="email" onclick="copyEmail();">charlesyiu.w@gmail.com</button>
 	</div>
-	<h2>Pages</h2>
-	<div>
-		<a href="https://draw.pages.dev" target="_blank" rel="noopener noreferrer">charlesyiu.github.io/draw</a><br>
-		<a href="https://charlesyiu.github.io/number-web/" target="_blank" rel="noopener noreferrer">charlesyiu.github.io/number-web</a>
-	</div>
-	<h2>Repositories</h2>
-	<div>	
-		<a href="https://github.com/charlesyiu/number-app/" target="_blank" rel="noopener noreferrer">charlesyiu/number-app</a><br>
-		<a href="https://github.com/charlesyiu/number-web/" target="_blank" rel="noopener noreferrer">charlesyiu/number-web</a><br>
-		<a href="https://github.com/charlesyiu/draw/" target="_blank" rel="noopener noreferrer">charlesyiu/draw</a><br>
-		<a href="https://github.com/charlesyiu/webmodules" target="_blank" rel="noopener noreferrer">charlesyiu/webmodules</a><br>
-		<a href="https://github.com/charlesyiu/toolbox" target="_blank" rel="noopener noreferrer">charlesyiu/toolbox</a>
-	</div>
-	<div id="footer">
-		<a href="https://github.com/charlesyiu/charlesyiu.github.io/" target="_blank" rel="noopener noreferrer">View on Github</a>
-	</div>
 	<script>
-		const email = 'charlesyiu.w@gmail.com';
-		const emailElement = document.getElementById('email');
+		var email = 'charlesyiu.w@gmail.com';
+		var emailElement = document.getElementById('email');
 		function copyEmail() {
 			navigator.clipboard.writeText(email);
 			emailElement.textContent = 'Copied Email';
 			setTimeout(() => {
 				emailElement.textContent = email;
 			}, 1000);
+		}
+		var selections = [
+			document.getElementById("github"),
+			document.getElementById("twitter"),
+			document.getElementById("email")
+		];
+		var currentSelectionIndex = NaN;
+		window.onkeydown = event => {
+			event = event || window.event;
+			if (event.code == "Tab") {
+				event.preventDefault();
+				currentSelectionIndex = isNaN(currentSelectionIndex) ? 0 : currentSelectionIndex >= 2 ? 0 : currentSelectionIndex + 1;
+				for (var selectionIndex = 0; selectionIndex < selections.length; selectionIndex++) {
+					if (selectionIndex == currentSelectionIndex) selections[currentSelectionIndex].style.color = "gray";
+					else selections[selectionIndex].style.color = "black";
+				}
+			} else if (event.code == "Enter") {
+				event.preventDefault();
+				if (isNaN(currentSelectionIndex)) {
+					currentSelectionIndex = 0;
+					return selections[0].style.color = "gray";
+				}
+				selections[currentSelectionIndex].click();
+			}
+		};
+		window.onmousemove = event => {
+			currentSelectionIndex = NaN;
+			for (var selectionIndex = 0; selectionIndex < selections.length; selectionIndex++) {
+				selections[selectionIndex].style.color = "black";
+			}
 		};
 	</script>
 </body>
