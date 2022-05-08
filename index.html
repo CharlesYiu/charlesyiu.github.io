@@ -1,3 +1,8 @@
+<!-- 
+	Note: 
+	Replace all my pages that use 'charlesyiu.github.io/favicon.ico'
+	with 's.charr.cc/favicon.ico' and delete /favicon.ico when done.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,19 +18,18 @@
 		}
 		body { margin-top: 100px; }
 		h1 { font-size: 48px; }
-		a, button { font-size: 16px; }
-		a {
+		a, button {
+			font-size: 16px;
 			color: black;
 			transition-duration: 0.1s;
 			text-decoration: none;
 		}
+		button {
+			background: none;
+			border: none;
+		}
 		a:hover, button:hover { cursor: pointer; }
 		a:active, button:active { color: gray; }
-		button {
-			transition-duration: 0.1s;
-			border: none;
-			background: none;
-		}
 		div {
 			line-height: 34px;
 			-webkit-touch-callout: none; /* iOS Safari */
@@ -40,12 +44,12 @@
 <body>
 	<h1>Charles Yiu</h1>
 	<div>
-		<a href="https://github.com/charlesyiu" target="_blank" rel="noopener noreferrer" id="github">github.com/charlesyiu</a><br>
-		<a href="https://twitter.com/thecharlesyiu" target="_blank" rel="noopener noreferrer" id="twitter">twitter.com/thecharlesyiu</a><br>
-		<button id="email" onclick="copyEmail();">charlesyiu.w@gmail.com</button>
+		<a href="https://to.charr.cc/github" target="_blank" rel="noopener noreferrer" id="github">github/charlesyiu</a><br>
+		<a href="https://to.charr.cc/twitter" target="_blank" rel="noopener noreferrer" id="twitter">twitter/thecharlesyiu</a><br>
+		<button id="email" onclick="copyEmail();">me@charr.cc</button>
 	</div>
 	<script>
-		var email = 'charlesyiu.w@gmail.com';
+		var email = 'me@charr.cc';
 		var emailElement = document.getElementById('email');
 		function copyEmail() {
 			navigator.clipboard.writeText(email);
