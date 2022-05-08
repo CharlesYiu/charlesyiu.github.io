@@ -43,9 +43,10 @@
 </head>
 <body>
 	<h1>Charles Yiu</h1>
-	<div>
+	<div id="places">
 		<a href="https://to.charr.cc/github" target="_blank" rel="noopener noreferrer" id="github">github/charlesyiu</a><br>
 		<a href="https://to.charr.cc/twitter" target="_blank" rel="noopener noreferrer" id="twitter">twitter/thecharlesyiu</a><br>
+		<a href="https://to.charr.cc/blog" target="_blank" rel="noopener noreferrer" id="blog">blog.charr.cc</a><br>
 		<button id="email" onclick="copyEmail();">me@charr.cc</button>
 	</div>
 	<script>
@@ -61,6 +62,7 @@
 		var selections = [
 			document.getElementById("github"),
 			document.getElementById("twitter"),
+			document.getElementById("blog"),
 			document.getElementById("email")
 		];
 		var currentSelectionIndex = NaN;
@@ -68,7 +70,7 @@
 			event = event || window.event;
 			if (event.code == "Tab") {
 				event.preventDefault();
-				currentSelectionIndex = isNaN(currentSelectionIndex) ? 0 : currentSelectionIndex >= 2 ? 0 : currentSelectionIndex + 1;
+				currentSelectionIndex = isNaN(currentSelectionIndex) ? 0 : currentSelectionIndex >= selections.length - 1 ? 0 : currentSelectionIndex + 1;
 				for (var selectionIndex = 0; selectionIndex < selections.length; selectionIndex++) {
 					if (selectionIndex == currentSelectionIndex) selections[currentSelectionIndex].style.color = "gray";
 					else selections[selectionIndex].style.color = "black";
