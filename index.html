@@ -42,12 +42,16 @@
 	</style>
 </head>
 <body>
-	<h1>Charles Yiu</h1>
+	<h1>charles yiu</h1>
 	<div id="places">
-		<a href="https://to.charr.cc/github" target="_blank" rel="noopener noreferrer" id="github">github/charlesyiu</a><br>
-		<a href="https://to.charr.cc/twitter" target="_blank" rel="noopener noreferrer" id="twitter">twitter/thecharlesyiu</a><br>
+		<a href="https://to.charr.cc/github" target="_blank" rel="noopener noreferrer" class="place">github/charlesyiu</a><br>
+		<a href="https://to.charr.cc/twitter" target="_blank" rel="noopener noreferrer" class="place">twitter/thecharlesyiu</a><br>
+        <a href="https://www.npmjs.com/~charlesyiu" target="_blank" rel="noopener noreferrer" class="place">npm/charlesyiu</a><br>
 		<!-- <a href="https://to.charr.cc/blog" target="_blank" rel="noopener noreferrer" id="blog">blog.charr.cc</a><br> -->
-		<button id="email" onclick="copyEmail();">me@charr.cc</button>
+		<button id="email" onclick="copyEmail();" class="place">me@charr.cc</button><br>
+        <h2>some links</h2>
+        <a href="https://to.charr.cc/pages" target="_blank" rel="noopener noreferrer" class="place">mini webpages</a><br>
+        <a href="https://to.charr.cc/draw" target="_blank" rel="noopener noreferrer" class="place">draw</a>
 	</div>
 	<script>
 		var email = 'me@charr.cc';
@@ -59,12 +63,7 @@
 				emailElement.textContent = email;
 			}, 1000);
 		}
-		var selections = [
-			document.getElementById("github"),
-			document.getElementById("twitter"),
-			// document.getElementById("blog"),
-			document.getElementById("email")
-		];
+		var selections = document.getElementsByClassName("place");
 		var currentSelectionIndex = NaN;
 		window.onkeydown = event => {
 			event = event || window.event;
@@ -72,17 +71,17 @@
 				event.preventDefault();
 				currentSelectionIndex = isNaN(currentSelectionIndex) ? 0 : currentSelectionIndex >= selections.length - 1 ? 0 : currentSelectionIndex + 1;
 				for (var selectionIndex = 0; selectionIndex < selections.length; selectionIndex++) {
-					if (selectionIndex == currentSelectionIndex) selections[currentSelectionIndex].style.color = "gray";
-					else selections[selectionIndex].style.color = "black";
+					if (selectionIndex == currentSelectionIndex) selections.item(currentSelectionIndex).style.color = "gray";
+					else selections.item(selectionIndex).style.color = "black";
 				}
 				document.body.style.cursor = "none";
 			} else if (event.code == "Enter") {
 				event.preventDefault();
 				if (isNaN(currentSelectionIndex)) {
 					currentSelectionIndex = 0;
-					return selections[0].style.color = "gray";
+					return selections.item(0).style.color = "gray";
 				}
-				selections[currentSelectionIndex].click();
+				selections.item(currentSelectionIndex).click();
 				document.body.style.cursor = "none";
 			}
 		};
@@ -90,7 +89,7 @@
 			document.body.style.cursor = "auto";
 			currentSelectionIndex = NaN;
 			for (var selectionIndex = 0; selectionIndex < selections.length; selectionIndex++) {
-				selections[selectionIndex].style.color = "black";
+				selections.item(selectionIndex).style.color = "black";
 			}
 		};
 	</script>
